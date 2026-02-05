@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mi Inicio Dinámico</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #121212; color: white; padding: 50px; }
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); 
+            gap: 15px; 
+            max-width: 1000px; 
+            margin: 0 auto; 
+        }
+        .card { 
+            background: #1e1e1e; padding: 25px; border-radius: 12px; 
+            text-align: center; text-decoration: none; color: #00adb5; 
+            border: 1px solid #333; transition: 0.2s; 
+        }
+        .card:hover { background: #00adb5; color: white; transform: scale(1.05); }
+        .card span { display: block; font-size: 0.8em; color: #888; margin-top: 5px; }
+        .card:hover span { color: #eee; }
+    </style>
+</head>
+<body>
+
+    <h1 style="text-align:center">Mis Atajos</h1>
+    <div id="links-container" class="grid"></div>
+
+    <script>
+        // AQUÍ ES DONDE AÑADES O QUITAS TUS PÁGINAS
+        const misEnlaces = [
+            { nombre: "Gaio", url: "https://mail.google.com", desc: "traductor xunta", imagen: "img/gaio.png"},
+            { nombre: "GitHub", url: "https://github.com", desc: "Repositorios" },
+            { nombre: "YouTube", url: "https://youtube.com", desc: "Videos" },
+            { nombre: "Reddit", url: "https://reddit.com", desc: "Foros" },
+            { nombre: "ChatGPT", url: "https://chatgpt.com", desc: "Asistente AI" }
+        ];
+
+const container = document.getElementById('links-container');
+
+function renderizar(lista) {
+    container.innerHTML = '';
+    lista.forEach(sitio => {
+        const anchor = document.createElement('a');
+        anchor.href = sitio.url;
+        anchor.className = 'card';
+        
+        // Estructura: Imagen arriba, textos abajo
+        anchor.innerHTML = `
+            <div style="width: 100%; height: 120px; overflow: hidden; border-radius: 8px; margin-bottom: 12px; background: #252525;">
+            <img src="${sitio.imagen}" alt="${sitio.nombre}" 
+                style="width: 100%; height: 120px; object-fit: contain; padding: 10px; box-sizing: border-box;">
+            </div>
+            <strong>${sitio.nombre}</strong>
+            <span style="font-size: 0.8em; color: #888; margin-top: 5px;">${sitio.desc}</span>
+            `;
+            container.appendChild(anchor);
+            });
+        }
+
+        renderizar(misEnlaces);
+    </script>
+</body>
+</html>
