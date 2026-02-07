@@ -30,11 +30,13 @@
     <script>
         // AQUÍ ES DONDE AÑADES O QUITAS TUS PÁGINAS
         const misEnlaces = [
-            { nombre: "Gaio", url: "https://mail.google.com", desc: "traductor xunta", imagen: "img/gaio.png"},
-            { nombre: "GitHub", url: "https://github.com", desc: "Repositorios" },
-            { nombre: "YouTube", url: "https://youtube.com", desc: "Videos" },
-            { nombre: "Reddit", url: "https://reddit.com", desc: "Foros" },
-            { nombre: "ChatGPT", url: "https://chatgpt.com", desc: "Asistente AI" }
+            { nombre: "Gaio", url: "https://tradutorgaio.xunta.gal/TradutorPublico/traducir/index", desc: "traductor xunta", categoria: "traductores", tags: ["traductor", "xunta", "galego"] },
+            { nombre: "GitHub", url: "https://github.com", desc: "Repositorios" , categoria: "desarrollo", tags: ["codigo", "repositorios", "desarrollo"]},
+            { nombre: "Gemini", url: "https://gemini.google.com", desc: "Asistente AI", categoria: "ia", tags: ["AI", "asistente", "google"]},
+            {nombre: "ChatGPT", url: "https://chatgpt.com", desc: "Asistente AI", categoria: "ia", tags: ["AI", "asistente", "openai"]},
+            { nombre: "CSSGridGenerator", url: "https://cssgrid-generator.netlify.app/", desc: "Generador CSS Grid", categoria: "desarrollo", tags: ["css", "grid", "generador"] },
+            { nombre: "Canva", url: "https://www.canva.com/", desc: "Diseño gráfico", categoria: "diseño", tags: ["diseño", "gráfico", "canva"] },
+            
         ];
 
 const container = document.getElementById('links-container');
@@ -42,18 +44,21 @@ const container = document.getElementById('links-container');
 function renderizar(lista) {
     container.innerHTML = '';
     lista.forEach(sitio => {
+        const nombreArchivo = sitio.nombre.toLowerCase();
+        const rutaImagen = `img/${nombreArchivo}.png`;
+
         const anchor = document.createElement('a');
         anchor.href = sitio.url;
         anchor.className = 'card';
         
         // Estructura: Imagen arriba, textos abajo
         anchor.innerHTML = `
-            <div style="width: 100%; height: 120px; overflow: hidden; border-radius: 8px; margin-bottom: 12px; background: #252525;">
-            <img src="${sitio.imagen}" alt="${sitio.nombre}" 
+            <div style="width: 100%; height: 120px; overflow: hidden; border-radius: 8px; margin-bottom: 12px; background: #faf7f7;">
+            <img src="${rutaImagen}" alt="${sitio.nombre}" onerror="this.onerror=null; this.src='img/notfound.png';"
                 style="width: 100%; height: 120px; object-fit: contain; padding: 10px; box-sizing: border-box;">
             </div>
             <strong>${sitio.nombre}</strong>
-            <span style="font-size: 0.8em; color: #888; margin-top: 5px;">${sitio.desc}</span>
+            <span style="font-size: 0.8em; color: #faf7f7; margin-top: 5px;">${sitio.desc}</span>
             `;
             container.appendChild(anchor);
             });
