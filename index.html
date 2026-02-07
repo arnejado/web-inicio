@@ -20,11 +20,74 @@
         .card:hover { background: #00adb5; color: white; transform: scale(1.05); }
         .card span { display: block; font-size: 0.8em; color: #888; margin-top: 5px; }
         .card:hover span { color: #eee; }
+
+        #buscador {
+            width: 100%;
+            max-width: 400px;
+            padding: 12px 20px;
+            margin: 20px auto;
+            display: block;
+            border-radius: 25px;
+            border: 1px solid #333;
+            background: #1e1e1e;
+            color: white;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        #buscador:focus {
+            border-color: #00adb5; /* El color cian que usábamos antes */
+        }
+
+        /* Contenedor centrado y con scroll horizontal si hay muchas categorías */
+        .categories-bar {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap; /* Para que bajen si no caben, o usa overflow-x: auto si prefieres scroll */
+        }
+
+        /* Estilo base del botón */
+        .cat-btn {
+            background: #1e1e1e;
+            color: #888;
+            border: 1px solid #333;
+            padding: 8px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        /* Efecto al pasar el ratón */
+        .cat-btn:hover {
+            border-color: #00adb5;
+            color: #eee;
+        }
+
+        /* Estado activo (categoría seleccionada) */
+        .cat-btn.active {
+            background: #00adb5;
+            color: white;
+            border-color: #00adb5;
+            box-shadow: 0 4px 15px rgba(0, 173, 181, 0.3);
+        }
+
     </style>
 </head>
 <body>
-
     <h1 style="text-align:center">Mis Atajos</h1>
+
+    <div class="search-container">
+        <input type="text" id="buscador" placeholder="Escribe para buscar...">
+    </div>
+    
+    <div id="categorias-nav" class="categories-bar">
+        <button class="cat-btn active" data-categoria="todos">Todos</button>
+    </div>
+
     <div id="links-container" class="grid"></div>
 
     <script>
