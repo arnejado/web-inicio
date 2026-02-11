@@ -1,7 +1,6 @@
 // 1. CONSTANTES Y SELECTORES
 import { misEnlaces } from './config.js';
 
-// Ahora tenemos dos contenedores
 const containerHabituales = document.getElementById('links-principal');
 const containerArchivo = document.getElementById('links-archivo');
 const navCategorias = document.getElementById('categorias-nav');
@@ -9,34 +8,60 @@ const inputBuscador = document.getElementById('buscador');
 
 // 2. FUNCIONES DE RENDERIZADO
 
-// Función pequeña para crear el HTML de una tarjeta (así no repetimos código)
 function crearCard(sitio) {
     const nombreArchivo = sitio.nombre.toLowerCase();
     const rutaImagen = `img/${nombreArchivo}.png`;
 
-    const anchor = document.createElement('a');
-    anchor.href = sitio.url;
-    anchor.className = 'card';
-    anchor.target = "_blank"; 
-    anchor.rel = "noopener noreferrer";
+    // Creamos el contenedor principal (el marco 3D)
+    const cardContainer = document.createElement('div');
+    cardContainer.className = 'card-container';
 
-    anchor.innerHTML = `
-        <div style="width: 100%; height: 120px; overflow: hidden; border-radius: 8px; margin-bottom: 12px; background: #faf7f7;">
-            <img src="${rutaImagen}" alt="${sitio.nombre}" onerror="this.onerror=null; this.src='img/notfound.png';"
-            style="width: 100%; height: 120px; object-fit: contain; padding: 10px; box-sizing: border-box;">
+    // Inyectamos la estructura de dos caras
+    cardContainer.innerHTML = `
+        <div class="card-inner">
+            <div class="card-front">
+                <a href="${sitio.url}" target="_blank" rel="noopener noreferrer" class="card-link">
+                    <div class="card-img-wrapper">
+                        <img src="${rutaImagen}" alt="${sitio.nombre}" onerror="this.onerror=null; this.src='img/notfound.png';">
+                    </div>
+                    <strong>${sitio.nombre}</strong>
+                    <span class="card-desc">${sitio.desc}</span>
+                </a>
+                <button class="info-btn" title="Ver notas">i</button>
+            </div>
+
+            <div class="card-back">
+                <div class="back-content">
+                    <h4>${sitio.nombre}</h4>
+                    <p>${sitio.nota || "No hay notas adicionales para este sitio."}</p>
+                    <button class="close-btn">Volver</button>
+                </div>
+            </div>
         </div>
-        <strong>${sitio.nombre}</strong>
-        <span style="font-size: 0.8em; color: #888; margin-top: 5px;">${sitio.desc}</span>
     `;
-    return anchor;
+
+    // LÓGICA DEL FLIP
+    const btnInfo = cardContainer.querySelector('.info-btn');
+    const btnClose = cardContainer.querySelector('.close-btn');
+
+    // Al hacer click en 'i', añadimos la clase que activa el giro en CSS
+    btnInfo.addEventListener('click', (e) => {
+        e.preventDefault(); // Por si acaso
+        cardContainer.classList.add('flipped');
+    });
+
+    // Al hacer click en 'Volver', quitamos la clase
+    btnClose.addEventListener('click', () => {
+        cardContainer.classList.remove('flipped');
+    });
+
+    return cardContainer;
 }
 
 function renderizar(lista) {
-    // Limpiamos ambos contenedores
     containerHabituales.innerHTML = '';
     containerArchivo.innerHTML = '';
     
-    // Si la lista está vacía
     if (lista.length === 0) {
         containerHabituales.innerHTML = `
             <div class="no-results">
@@ -49,10 +74,8 @@ function renderizar(lista) {
         return;
     }
 
-    // Clasificamos y dibujamos
     lista.forEach(sitio => {
         const card = crearCard(sitio);
-        
         if (sitio.tipo === 'principal') {
             containerHabituales.appendChild(card);
         } else {
@@ -61,7 +84,7 @@ function renderizar(lista) {
     });
 }
 
-// 3. RESTO DE LÓGICA (Botones y Buscador)
+// 3. RESTO DE LÓGICA (Botones y Buscador) - SE MANTIENE IGUAL
 function generarBotonesCategorias() {
     const todasLasCategorias = misEnlaces.map(sitio => sitio.categoria);
     const categoriasUnicas = [...new Set(todasLasCategorias)];
