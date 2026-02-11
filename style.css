@@ -83,3 +83,22 @@
             grid-column: 1 / -1; /* Esto hace que el mensaje ocupe todo el ancho de la rejilla */
             font-style: italic;
         }
+
+            .section-title {
+        font-size: 1.2rem;
+        color: #00adb5;
+        margin: 40px 0 20px 0;
+        border-left: 4px solid #00adb5;
+        padding-left: 15px;
+        }
+
+        .grid-mini:hover {
+            opacity: 1;
+        }
+
+        .separator {
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, #333, transparent);
+            margin: 50px 0;
+        }

@@ -1,58 +1,67 @@
 // 1. CONSTANTES Y SELECTORES
 import { misEnlaces } from './config.js';
 
-
-const container = document.getElementById('links-container');
+// Ahora tenemos dos contenedores
+const containerHabituales = document.getElementById('links-principal');
+const containerArchivo = document.getElementById('links-archivo');
 const navCategorias = document.getElementById('categorias-nav');
-const inputBuscador = document.getElementById('buscador'); // <--- ¡Faltaba esto!
+const inputBuscador = document.getElementById('buscador');
 
 // 2. FUNCIONES DE RENDERIZADO
+
+// Función pequeña para crear el HTML de una tarjeta (así no repetimos código)
+function crearCard(sitio) {
+    const nombreArchivo = sitio.nombre.toLowerCase();
+    const rutaImagen = `img/${nombreArchivo}.png`;
+
+    const anchor = document.createElement('a');
+    anchor.href = sitio.url;
+    anchor.className = 'card';
+    anchor.target = "_blank"; 
+    anchor.rel = "noopener noreferrer";
+
+    anchor.innerHTML = `
+        <div style="width: 100%; height: 120px; overflow: hidden; border-radius: 8px; margin-bottom: 12px; background: #faf7f7;">
+            <img src="${rutaImagen}" alt="${sitio.nombre}" onerror="this.onerror=null; this.src='img/notfound.png';"
+            style="width: 100%; height: 120px; object-fit: contain; padding: 10px; box-sizing: border-box;">
+        </div>
+        <strong>${sitio.nombre}</strong>
+        <span style="font-size: 0.8em; color: #888; margin-top: 5px;">${sitio.desc}</span>
+    `;
+    return anchor;
+}
+
 function renderizar(lista) {
-    container.innerHTML = '';
+    // Limpiamos ambos contenedores
+    containerHabituales.innerHTML = '';
+    containerArchivo.innerHTML = '';
     
-    // Si la lista está vacía (no hay resultados)
+    // Si la lista está vacía
     if (lista.length === 0) {
-        container.innerHTML = `
+        containerHabituales.innerHTML = `
             <div class="no-results">
-                <p>No se han encontrado enlaces que coincidan con tu búsqueda...</p>
-                <button onclick="resetearBusqueda()" style="background:none; border:none; color:#00adb5; cursor:pointer; text-decoration:underline;">
-                    Mostrar todos los enlaces
+                <p>No se han encontrado enlaces...</p>
+                <button onclick="location.reload()" style="background:none; border:none; color:#00adb5; cursor:pointer; text-decoration:underline;">
+                    Ver todo
                 </button>
             </div>
         `;
-        return; // Salimos de la función para no intentar hacer el forEach
+        return;
     }
 
-    // Si hay resultados, dibujamos las tarjetas como antes
+    // Clasificamos y dibujamos
     lista.forEach(sitio => {
-        const nombreArchivo = sitio.nombre.toLowerCase();
-        const rutaImagen = `img/${nombreArchivo}.png`;
-
-        const anchor = document.createElement('a');
-        anchor.href = sitio.url;
-        anchor.className = 'card';
-
-        anchor.target = "_blank"; 
-        anchor.rel = "noopener noreferrer";
-
-        anchor.innerHTML = `
-            <div style="width: 100%; height: 120px; overflow: hidden; border-radius: 8px; margin-bottom: 12px; background: #faf7f7;">
-                <img src="${rutaImagen}" alt="${sitio.nombre}" onerror="this.onerror=null; this.src='img/notfound.png';"
-                style="width: 100%; height: 120px; object-fit: contain; padding: 10px; box-sizing: border-box;">
-            </div>
-            <strong>${sitio.nombre}</strong>
-            <span style="font-size: 0.8em; color: #faf7f7; margin-top: 5px;">${sitio.desc}</span>
-        `;
-        container.appendChild(anchor);
+        const card = crearCard(sitio);
+        
+        if (sitio.tipo === 'principal') {
+            containerHabituales.appendChild(card);
+        } else {
+            containerArchivo.appendChild(card);
+        }
     });
 }
 
-// Función auxiliar para el botón de "Mostrar todos"
-function resetearBusqueda() {
-    inputBuscador.value = ''; // Limpiamos el input
-    renderizar(misEnlaces);   // Mostramos todo
-}
-
+// 3. RESTO DE LÓGICA (Botones y Buscador)
 function generarBotonesCategorias() {
     const todasLasCategorias = misEnlaces.map(sitio => sitio.categoria);
     const categoriasUnicas = [...new Set(todasLasCategorias)];
@@ -66,7 +75,6 @@ function generarBotonesCategorias() {
         navCategorias.appendChild(btn);
     });
 
-    // Botón Todos
     const btnTodos = document.querySelector('[data-categoria="todos"]');
     if(btnTodos) {
         btnTodos.addEventListener('click', function() {
@@ -75,7 +83,6 @@ function generarBotonesCategorias() {
     }
 }
 
-// 3. LÓGICA DE FILTROS
 function filtrarPorCategoria(categoriaSeleccionada, botonActivo) {
     document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('active'));
     botonActivo.classList.add('active');
@@ -88,7 +95,6 @@ function filtrarPorCategoria(categoriaSeleccionada, botonActivo) {
     }
 }
 
-// 4. EVENTOS
 inputBuscador.addEventListener('input', (e) => {
     const texto = e.target.value.toLowerCase();
     const filtrados = misEnlaces.filter(sitio => {
@@ -100,6 +106,6 @@ inputBuscador.addEventListener('input', (e) => {
     renderizar(filtrados);
 });
 
-// 5. INICIALIZACIÓN (¡Importante el orden!)
+// 5. INICIALIZACIÓN
 generarBotonesCategorias();
 renderizar(misEnlaces);
