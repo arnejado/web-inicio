@@ -11,4 +11,9 @@ export const misEnlaces = [
     { nombre: "NeonTech", tipo: "principal", url: "https://neontech.com/", desc: "Bases de Datos", nota: "herramientas de bases de datos", categoria: "desarrollo", tags: ["tecnología", "bases de datos", "postgreSQL", "gadgets", "neontech"] },
     { nombre: "Animista", tipo: "archivo", url: "https://animista.net/", desc: "Animaciones CSS", nota: "miles de efectos css", categoria: "diseño", tags: ["animación", "css", "animista"] },
     { nombre: "htmlrev", tipo: "archivo", url: "https://htmlrev.com/", desc: "Plantillas Html", nota: "miles de plantillas para un monton de framewors (de midudev)", categoria: "diseño", tags: ["plantillas", "html", "astro", "talwind"]},
+    { nombre: "CodiLink", tipo: "archivo", url: "https://codi.link/", desc: "Editor Básico Online", nota: "Editor Básico Online que le encanta (o encantaba) a Midudev", categoria: "desarrollo", tags: ["editor", "programación", "vscode", "online", "comunidades"] },
+    { nombre: "dbdiagram", tipo: "archivo", url: "https://dbdiagram.io/home", desc: "Diseñador de Bases de Datos", nota: "herramienta para diseñar bases de datos visualmente y se puede exportar el código (de Fernando Herrera)", categoria: "desarrollo", tags: ["bases de datos", "diseño", "dbdiagram"] },
+    { nombre: "wweb", tipo: "archivo", url: "https://wweb.dev/", desc: "Recursos css", nota: "separadores css", categoria: "diseño", tags: ["css", "web", "separadores"] },
+    { nombre: "freesets", tipo: "archivo", url: "https://freesets.dev/", desc: "Recursos", nota: "Todo tipo de recursos para diseño web", categoria: "desarrollo", tags: ["iconos", "plantillas", "fuentes"] },
+    { nombre: "vids", tipo: "principal", url: "https://workspace.google.com/intl/es/products/vids/", desc: "Edición de vídeo", nota: "herramienta de google con IA para edición de video", categoria: "diseño", tags: ["diseño", "google", "video", "edición", "ia" ] },
 ];
