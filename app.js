@@ -34,7 +34,7 @@ function crearCard(sitio) {
                 <div class="back-content">
                     <h4>${sitio.nombre}</h4>
                     <p>${sitio.nota || "No hay notas adicionales para este sitio."}</p>
-                    <button class="close-btn">Volver</button>
+                    <button class="close-btn">🔙 Volver</button>
                 </div>
             </div>
         </div>
@@ -86,24 +86,32 @@ function renderizar(lista) {
 
 // 3. RESTO DE LÓGICA (Botones y Buscador) - SE MANTIENE IGUAL
 function generarBotonesCategorias() {
+    navCategorias.innerHTML = ''; // Limpiamos por si acaso
+
+    // 1. Añadimos el botón "Todos" con el total general
+    const btnTodos = document.createElement('button');
+    btnTodos.className = 'cat-btn active'; // "Todos" empieza activo
+    btnTodos.innerHTML = `Todos <span>${misEnlaces.length}</span>`;
+    btnTodos.setAttribute('data-categoria', 'todos');
+    btnTodos.addEventListener('click', () => filtrarPorCategoria('todos', btnTodos));
+    navCategorias.appendChild(btnTodos);
+
+    // 2. Generamos el resto de categorías con sus contadores
     const todasLasCategorias = misEnlaces.map(sitio => sitio.categoria);
     const categoriasUnicas = [...new Set(todasLasCategorias)];
 
     categoriasUnicas.forEach(cat => {
+        // Contamos cuántos enlaces pertenecen a esta categoría
+        const totalEnCat = misEnlaces.filter(sitio => sitio.categoria === cat).length;
+
         const btn = document.createElement('button');
         btn.className = 'cat-btn';
-        btn.textContent = cat;
+        // Usamos innerHTML para meter el número en un span y darle estilo luego
+        btn.innerHTML = `${cat} <span>${totalEnCat}</span>`;
         btn.setAttribute('data-categoria', cat);
         btn.addEventListener('click', () => filtrarPorCategoria(cat, btn));
         navCategorias.appendChild(btn);
     });
-
-    const btnTodos = document.querySelector('[data-categoria="todos"]');
-    if(btnTodos) {
-        btnTodos.addEventListener('click', function() {
-            filtrarPorCategoria('todos', this);
-        });
-    }
 }
 
 function filtrarPorCategoria(categoriaSeleccionada, botonActivo) {

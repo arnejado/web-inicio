@@ -142,7 +142,7 @@
             justify-content: center;
             padding: 20px; 
             text-align: center;
-            
+            background: #252525;
         }
 
         /* El botón 'i' */
@@ -305,4 +305,18 @@ body {
 .info-btn:hover {
     background: #00adb5;
     color: white;
+}
+
+.cat-btn span {
+    background: rgba(0, 173, 181, 0.2);
+    padding: 2px 6px;
+    border-radius: 8px;
+    font-size: 0.7em;
+    margin-left: 5px;
+    color: #00adb5;
+}
+
+.cat-btn.active span {
+    background: white;
+    color: #00adb5;
 }
