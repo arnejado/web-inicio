@@ -17,4 +17,5 @@ export const misEnlaces = [
     { nombre: "freesets", tipo: "archivo", url: "https://freesets.dev/", desc: "Recursos", nota: "Todo tipo de recursos para diseño web", categoria: "desarrollo", tags: ["iconos", "plantillas", "fuentes"] },
     { nombre: "vids", tipo: "principal", url: "https://workspace.google.com/intl/es/products/vids/", desc: "Edición de vídeo", nota: "herramienta de google con IA para edición de video", categoria: "diseño", tags: ["diseño", "google", "video", "edición", "ia" ] },
     { nombre: "firebaseStudio", tipo: "principal", url: "https://studio.firebase.google.com/", desc: "Editor de código", nota: "Editor de código con IA de Firebase de Google", categoria: "desarrollo", tags: ["informatica", "IDE", "IA", "Google"]},
+    { nombre: "squoosh", tipo: "principal", url: "https://squoosh.app/", desc: "Compresor de imágenes", nota: "herramienta de google para comprimir imágenes", categoria: "diseño", tags: ["diseño", "google", "imágenes", "compresión"] },
 ];
