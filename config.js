@@ -19,4 +19,6 @@ export const misEnlaces = [
     { nombre: "firebaseStudio", tipo: "principal", url: "https://studio.firebase.google.com/", desc: "Editor de código", nota: "Editor de código con IA de Firebase de Google", categoria: "desarrollo", tags: ["informatica", "IDE", "IA", "Google"]},
     { nombre: "squoosh", tipo: "principal", url: "https://squoosh.app/", desc: "Compresor de imágenes", nota: "herramienta de google para comprimir imágenes", categoria: "diseño", tags: ["diseño", "google", "imágenes", "compresión"] },
     { nombre: "flat", tipo: "archivo", url: "https://flat.io/", desc: "Editor de partituras", nota: "editor de partituras online", categoria: "música", tags: ["música", "partituras", "editor"] },
+    { nombre: "online-convert", tipo: "principal", url: "https://www.online-convert.com/", desc: "Convertidor de archivos", nota: "herramienta para convertir todo tipo de archivos online", categoria: "utilidades", tags: ["convertidor", "archivos", "online"]},
+    { nombre: "ApuntesMajo", tipo: "archivo", url: "https://losapuntesdemajo.vercel.app/", desc: "Apuntes de informática", nota: "apuntes de informática de Majo", categoria: "desarrollo", tags: ["apuntes", "informática", "majo"] },
 ];
