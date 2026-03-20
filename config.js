@@ -22,4 +22,5 @@ export const misEnlaces = [
     { nombre: "online-convert", tipo: "principal", url: "https://www.online-convert.com/", desc: "Convertidor de archivos", nota: "herramienta para convertir todo tipo de archivos online", categoria: "utilidades", tags: ["convertidor", "archivos", "online"]},
     { nombre: "ApuntesMajo", tipo: "archivo", url: "https://losapuntesdemajo.vercel.app/", desc: "Apuntes de informática", nota: "apuntes de informática de Majo", categoria: "desarrollo", tags: ["apuntes", "informática", "majo"] },
     { nombre: "TextStudio", tipo: "archivo", url: "https://es.textstudio.com/", desc: "Generador de fuentes", nota: "Generador de fuentes con todo tipo de tipografías super conocidas", categoria: "diseño", tags: ["diseño", "fuentes", "banners"] },
+    { nombre: "Stitch", tipo: "archivo", url: "https://stitch.withgoogle.com/", desc: "Creador de layouts con IA", nota: "herramienta de google para crear layouts (HTML) con IA", categoria: "diseño", tags: ["diseño", "google", "layouts", "ia"] },
 ];
