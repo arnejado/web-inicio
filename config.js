@@ -24,4 +24,5 @@ export const misEnlaces = [
     { nombre: "TextStudio", tipo: "archivo", url: "https://es.textstudio.com/", desc: "Generador de fuentes", nota: "Generador de fuentes con todo tipo de tipografías super conocidas", categoria: "diseño", tags: ["diseño", "fuentes", "banners"] },
     { nombre: "Stitch", tipo: "archivo", url: "https://stitch.withgoogle.com/", desc: "Creador de layouts con IA", nota: "herramienta de google para crear layouts (HTML) con IA", categoria: "diseño", tags: ["diseño", "google", "layouts", "ia"] },
     { nombre: "Supabase", tipo: "principal", url: "https://app.supabase.com/", desc: "Base de datos", nota: "base de datos con panel de control super intuitivo y fácil de usar basado en PostgreSQL", categoria: "desarrollo", tags: ["bases de datos", "desarrollo", "postgreSQL"] },
+    { nombre: "archive", tipo: "archivo", url: "https://archive.ph/", desc: "Lector de páginas de pago", nota: "herramienta para leer artículos de páginas de pago", categoria: "utilidades", tags: ["lector", "páginas de pago", "archivos", "prensa"] },
 ];
